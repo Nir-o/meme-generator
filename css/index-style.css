@@ -3,3 +3,17 @@
 .img-gallery {
     height: 100px;
 }
+
+#color-wheel, button:hover {
+    cursor: pointer;
+}
+
+input:focus {
+    background-color: wheat;
+    border-color: red;
+}
+
+.focus {
+    background-color: wheat;
+    border-color: red;
+}

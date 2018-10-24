@@ -40,8 +40,9 @@
       /* display: inline-block; */
     }
   </style>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-  <link rel="stylesheet" href="/css/index-style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/index-style.css">
 </head>
 
 <body onload="init()">
@@ -57,22 +58,30 @@
     <br>
 
     <div class="input-container">
-        <input id="custom-text" type="text" placeholder="Upper Text Here" />
-        <div class="text-style-buttons-container">
-            <button class="delete-mem far fa-trash-alt" onclick="styleText('erase')"></button>
-            <button class="uppercase-txt fas fa-font" onclick="styleText('uppercase')"></button>
-            <button class="stroke-txt fas fa-bold" onclick="styleText('stroke')"></button>
-            <button class="color-txt fas fa-palette" onclick="styleText('color')"></button>
-            <button class="font-size-up fas fa-plus" onclick="styleText('font-size-up')"></button>
-            <button class="font-size-down fas fa-minus" onclick="styleText('font-size-down')"></button>
-            <button class="align-txt-left fas fa-align-left" onclick="styleText('align-txt-left')"></button>
-            <button class="align-txt-center fas fa-align-center" onclick="styleText('align-txt-center')"></button>
-            <button class="align-txt-right fas fa-align-right" onclick="styleText('align-txt-right')"></button>
-            <button class="line-select fab fa-line" onclick="styleText('line-select')"></button>
-
-            
+        <div class="txt-input-container" id="inputs">
+            <p> <input id="custom-text-0" type="text" placeholder="Enter Text Here" oninput="createMeme()" /></p>
         </div>
-        <button onclick="createMeme()">Create</button>
+        <div class="text-style-buttons-container">
+            <button class="delete-mem far fa-trash-alt" onclick="deleteText(0)"></button>
+            <button class="uppercase-txt fas fa-font" onclick="toggleUppercase()"></button>
+            <button class="stroke-txt fas fa-bold" onclick="toggleStroke()"></button>
+            <input id="color-wheel" type="color" value="#ffffff" color-txt fas fa-palette">
+            <button class="font-size-up fas fa-plus" onclick="fontResize(1)"></button>
+            <button class="font-size-down fas fa-minus" onclick="fontResize(-1)"></button>
+            <button class="fas fa-arrow-left" onclick="lineAlign(-10)"></button>
+            <button class="align-txt-center fas fa-align-center" onclick="lineAlignCenter()"></button>
+            <button class="fas fa-arrow-right" onclick="lineAlign(10)"></button>
+            <button class="fas fa-arrow-up" onclick="lineHeight(-10)"></button>
+            <button class="fas fa-arrow-down" onclick="lineHeight(10)"></button>
+            <button class="line-select fab fa-line" onclick="addLine()"></button>
+            <button class="fas fa-list-ol" onclick="switchLine()"></button>
+            <button class="fas fa-minus-square" onclick="deleteLine()"></button>
+
+
+
+
+        </div>
+        <!-- <button onclick="createMeme()">Create</button> -->
     </div>
 
     <p> <a href="#" onclick="downloadImg(this)" download="my-img.jpg">
@@ -81,7 +90,7 @@
 
     <br>
 
-    <img class="img-gallery" src="/meme-imgs/9.jpg" id="1" onclick="selectedMeme(this)"/>
+    <img class="img-gallery" src="/meme-imgs/9.jpg" id="1" onclick="selectedMeme(this)" />
 
     <script src="js/service.js"></script>
     <script src="js/upload-service.js"></script>
