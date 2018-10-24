@@ -79,3 +79,26 @@ function addLine() {
 function lineFocus() {
 
 }
+
+document.body.addEventListener("mousedown", function (event) {
+    if (utils.rectanlePointCollision(event.clientX, event.clientY, handle)) {
+        document.body.addEventListener("mousemove", onMouseMove);
+        document.body.addEventListener("mouseup", onMouseUp);
+        offset.x = event.clientX - handle.x;
+        offset.y = event.clientY - handle.y;
+    }
+});
+
+function onMouseMove(event) {
+    handle.x = event.clientX;// - offset.x;
+    handle.y = event.clientY;// - offset.y;
+    draw();
+}
+
+function onMouseUp(event) {
+    document.body.removeEventListener("mousemove", onMouseMove);
+    document.body.removeEventListener("mouseup", onMouseUp);
+}
+
+
+};
