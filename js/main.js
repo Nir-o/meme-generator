@@ -6,7 +6,6 @@ function init() {
     canvas = document.getElementById('myCanvas');
     ctx = canvas.getContext('2d');
     gCurrImg = document.getElementById('start-image');
-
 }
 
 function renderCanvas(img) {
@@ -26,23 +25,12 @@ function createMeme() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     renderCanvas(gCurrImg);
     var text = document.getElementById("custom-text").value;
-    // for (var i = 0; i <= gLineCounter; i++) {
-    //     // let el = 'custom-text-' + i;
-    //     // var text = document.getElementById(el).value;
-    //     // gMeme.txts[0].line = text;
-    //     // gMeme.txts[0].lineX = canvas.width / 2 - text.length * 6;
-    //     gMeme.txts[i].line = text;
-    //     gMeme.txts[i].lineX = canvas.width / 2 - text.length * 6;
-    // }
     gMeme.txts[gCurrLine].line = text;
-    gMeme.txts[gCurrLine].lineX = canvas.width / 2 - text.length * 6;
+    // gMeme.txts[gCurrLine].lineX = canvas.width / 2 - text.length * 6;
+    gMeme.txts[gCurrLine].lineX = canvas.width / 2 - ctx.measureText(text).width / 2;
     updateInputStyle()
-
     gMeme.txts[gCurrLine].width = ctx.measureText(text).width
-
 }
-
-
 
 function updateInputStyle() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -60,14 +48,10 @@ function updateInputStyle() {
         }
         ctx.fillText(text, gMeme.txts[i].lineX, (gMeme.txts[i].lineY));
     }
-
 }
 
 function addLine() {
     gLineCounter += 1;
-    // document.querySelector("#inputs").innerHTML += `
-    // <p> <input id="custom-text-${gLineCounter}" type="text" placeholder="Enter Text Here" oninput="createMeme()"/></p>
-    // `;
     var newLine = {
         line: 'Enter text',
         lineX: 150,
@@ -76,15 +60,13 @@ function addLine() {
         stroke: true,
         size: 20,
         align: 'left',
-        color: "#ffffff"
+        color: "#ffffff",
+        width: undefined,
+        isFocused: false,
     };
     gMeme.txts.push(newLine);
     gCurrLine += 1;
     document.getElementById("custom-text").value = '';
-}
-
-function lineFocus() {
-
 }
 
 var mouse = {
@@ -92,18 +74,18 @@ var mouse = {
     y: undefined
 }
 
-
+// Handles user clicks on lines.
 document.getElementById("myCanvas").addEventListener("mousedown", function (event) {
-    
+
     // function getMousePos(canvas, evt) {
-        var rect = canvas.getBoundingClientRect();
-        var clientMouseX = event.clientX - rect.left;
-        var clientMouseY = event.clientY - rect.top;
-        console.log(event.clientX - rect.left);
-        console.log(event.clientY - rect.top);
-     
+    var rect = canvas.getBoundingClientRect();
+    var clientMouseX = event.clientX - rect.left;
+    var clientMouseY = event.clientY - rect.top;
+    console.log(event.clientX - rect.left);
+    console.log(event.clientY - rect.top);
+
     for (var i = 0; i <= gLineCounter; i++) {
-        
+
         var line = gMeme.txts[i];
         xRangeMin = line.lineX;
         xRangeMax = line.lineX + line.width;
@@ -115,7 +97,6 @@ document.getElementById("myCanvas").addEventListener("mousedown", function (even
             gCurrLine = i;
             switchLine(gCurrLine);
             console.log('clicked line: ', gCurrLine);
-
         }
     }
 

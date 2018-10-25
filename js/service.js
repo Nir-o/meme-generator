@@ -6,7 +6,7 @@ var gMeme = {
     txts: [
         {
             line: 'Enter text',
-            lineX: 150,
+            lineX: 0,
             lineY: 50,
             uppercase: false,
             stroke: true,
@@ -14,6 +14,7 @@ var gMeme = {
             align: 'left',
             color: "#ffffff",
             width: undefined,
+            isFocused: false,
         },
     ]
 }
@@ -27,10 +28,8 @@ function selectedMeme(img) {
 function deleteText() {
     gMeme.txts[gCurrLine].line = '';
     updateInputStyle()
-    let  elemId = 'custom-text-' + gCurrLine;
-    var elToReset = document.getElementById(elemId);
+    var elToReset = document.getElementById("custom-text");
     elToReset.value = '';
-
 }
 
 function toggleUppercase() {
@@ -56,7 +55,8 @@ function lineAlign(direction) {
 }
 
 function lineAlignCenter() {
-    gMeme.txts[gCurrLine].lineX = canvas.width / 2 - gMeme.txts[gCurrLine].line.length * 6;
+    // gMeme.txts[gCurrLine].lineX = canvas.width / 2 - gMeme.txts[gCurrLine].line.length * 6;
+    gMeme.txts[gCurrLine].lineX = canvas.width / 2 - ctx.measureText(gMeme.txts[gCurrLine].line).width / 2;
     gMeme.txts[gCurrLine].lineY = 50;
     updateInputStyle()
 }
@@ -75,24 +75,15 @@ function watchColorPicker(event) {
     updateInputStyle()
 }
 
-
 function switchLine(line) {
-    console.log('line ', line);
-    
-    // var prevLine = gCurrLine;
-    // let elId = 'custom-text-' + prevLine;
-    // var elUnFocus = document.getElementById(elId);
-    // elUnFocus.classList.remove("focus");
     if (line === undefined) {
-    gCurrLine += 1;
-    if (gCurrLine > gLineCounter) gCurrLine = 0;
+        gCurrLine += 1;
+        if (gCurrLine > gLineCounter) gCurrLine = 0;
     } else {
         gCurrLine = line;
     }
-    // let  elemId = 'custom-text-' + gCurrLine;
-    // var elToFocus = document.getElementById(elemId);
-    // elToFocus.classList.add("focus");
     document.getElementById("custom-text").value = gMeme.txts[gCurrLine].line;
+    // lineFocus(gCurrLine);
 }
 
 function deleteLine() {
@@ -100,17 +91,11 @@ function deleteLine() {
         console.log('Cannot delete more lines!');
         return
     }
-    gMeme.txts.splice(gCurrLine,1);
+    gMeme.txts.splice(gCurrLine, 1);
     gLineCounter -= 1;
-    // let elId = 'custom-text-' + gCurrLine;
-    // var elem = document.getElementById(elId);
-    // elem.parentNode.removeChild(elem);
     updateInputStyle()
     gCurrLine -= 1;
     if (gCurrLine < 0) gCurrLine = 0;
-    // let  elemId = 'custom-text-' + gCurrLine;
-    // var elToFocus = document.getElementById(elemId);
-    // elToFocus.classList.add("focus");
     document.getElementById("custom-text").value = gMeme.txts[gCurrLine].line;
 }
 
