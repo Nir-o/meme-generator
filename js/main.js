@@ -25,15 +25,21 @@ function downloadImg(elLink) {
 function createMeme() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     renderCanvas(gCurrImg);
-    for (var i = 0; i <= gLineCounter; i++) {
-        let el = 'custom-text-' + i;
-        var text = document.getElementById(el).value;
-        // gMeme.txts[0].line = text;
-        // gMeme.txts[0].lineX = canvas.width / 2 - text.length * 6;
-        gMeme.txts[i].line = text;
-        gMeme.txts[i].lineX = canvas.width / 2 - text.length * 6;
-    }
+    var text = document.getElementById("custom-text").value;
+    // for (var i = 0; i <= gLineCounter; i++) {
+    //     // let el = 'custom-text-' + i;
+    //     // var text = document.getElementById(el).value;
+    //     // gMeme.txts[0].line = text;
+    //     // gMeme.txts[0].lineX = canvas.width / 2 - text.length * 6;
+    //     gMeme.txts[i].line = text;
+    //     gMeme.txts[i].lineX = canvas.width / 2 - text.length * 6;
+    // }
+    gMeme.txts[gCurrLine].line = text;
+    gMeme.txts[gCurrLine].lineX = canvas.width / 2 - text.length * 6;
     updateInputStyle()
+
+    gMeme.txts[gCurrLine].width = ctx.measureText(text).width
+
 }
 
 
@@ -50,22 +56,22 @@ function updateInputStyle() {
         ctx.textAlign = gMeme.txts[i].align;
         if (gMeme.txts[i].stroke) {
             ctx.strokeStyle = 'black';
-            ctx.strokeText(text, gMeme.txts[i].lineX, (gMeme.txts[i].lineY + i * 50));
+            ctx.strokeText(text, gMeme.txts[i].lineX, (gMeme.txts[i].lineY));
         }
-        ctx.fillText(text, gMeme.txts[i].lineX, (gMeme.txts[i].lineY + i * 50));
+        ctx.fillText(text, gMeme.txts[i].lineX, (gMeme.txts[i].lineY));
     }
 
 }
 
 function addLine() {
     gLineCounter += 1;
-    document.querySelector("#inputs").innerHTML += `
-    <p> <input id="custom-text-${gLineCounter}" type="text" placeholder="Enter Text Here" oninput="createMeme()"/></p>
-    `;
+    // document.querySelector("#inputs").innerHTML += `
+    // <p> <input id="custom-text-${gLineCounter}" type="text" placeholder="Enter Text Here" oninput="createMeme()"/></p>
+    // `;
     var newLine = {
         line: 'Enter text',
         lineX: 150,
-        lineY: 50,
+        lineY: 50 + 50 * gLineCounter,
         uppercase: false,
         stroke: true,
         size: 20,
@@ -74,31 +80,46 @@ function addLine() {
     };
     gMeme.txts.push(newLine);
     gCurrLine += 1;
+    document.getElementById("custom-text").value = '';
 }
 
 function lineFocus() {
 
 }
 
-document.body.addEventListener("mousedown", function (event) {
-    if (utils.rectanlePointCollision(event.clientX, event.clientY, handle)) {
-        document.body.addEventListener("mousemove", onMouseMove);
-        document.body.addEventListener("mouseup", onMouseUp);
-        offset.x = event.clientX - handle.x;
-        offset.y = event.clientY - handle.y;
+var mouse = {
+    x: undefined,
+    y: undefined
+}
+
+
+document.getElementById("myCanvas").addEventListener("mousedown", function (event) {
+    
+    // function getMousePos(canvas, evt) {
+        var rect = canvas.getBoundingClientRect();
+        var clientMouseX = event.clientX - rect.left;
+        var clientMouseY = event.clientY - rect.top;
+        console.log(event.clientX - rect.left);
+        console.log(event.clientY - rect.top);
+     
+    for (var i = 0; i <= gLineCounter; i++) {
+        
+        var line = gMeme.txts[i];
+        xRangeMin = line.lineX;
+        xRangeMax = line.lineX + line.width;
+        yRangeMin = line.lineY - line.size;
+        yRangeMax = line.lineY;
+        console.log('line being checked ', line);
+
+        if (clientMouseX >= xRangeMin && clientMouseX <= xRangeMax && clientMouseY >= yRangeMin && clientMouseY <= yRangeMax) {
+            gCurrLine = i;
+            switchLine(gCurrLine);
+            console.log('clicked line: ', gCurrLine);
+
+        }
     }
+
+
 });
 
-function onMouseMove(event) {
-    handle.x = event.clientX;// - offset.x;
-    handle.y = event.clientY;// - offset.y;
-    draw();
-}
 
-function onMouseUp(event) {
-    document.body.removeEventListener("mousemove", onMouseMove);
-    document.body.removeEventListener("mouseup", onMouseUp);
-}
-
-
-};

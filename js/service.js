@@ -12,7 +12,8 @@ var gMeme = {
             stroke: true,
             size: 20,
             align: 'left',
-            color: "#ffffff"
+            color: "#ffffff",
+            width: undefined,
         },
     ]
 }
@@ -75,16 +76,23 @@ function watchColorPicker(event) {
 }
 
 
-function switchLine() {
-    var prevLine = gCurrLine;
-    let elId = 'custom-text-' + prevLine;
-    var elUnFocus = document.getElementById(elId);
-    elUnFocus.classList.remove("focus");
+function switchLine(line) {
+    console.log('line ', line);
+    
+    // var prevLine = gCurrLine;
+    // let elId = 'custom-text-' + prevLine;
+    // var elUnFocus = document.getElementById(elId);
+    // elUnFocus.classList.remove("focus");
+    if (line === undefined) {
     gCurrLine += 1;
     if (gCurrLine > gLineCounter) gCurrLine = 0;
-    let  elemId = 'custom-text-' + gCurrLine;
-    var elToFocus = document.getElementById(elemId);
-    elToFocus.classList.add("focus");
+    } else {
+        gCurrLine = line;
+    }
+    // let  elemId = 'custom-text-' + gCurrLine;
+    // var elToFocus = document.getElementById(elemId);
+    // elToFocus.classList.add("focus");
+    document.getElementById("custom-text").value = gMeme.txts[gCurrLine].line;
 }
 
 function deleteLine() {
@@ -94,14 +102,15 @@ function deleteLine() {
     }
     gMeme.txts.splice(gCurrLine,1);
     gLineCounter -= 1;
-    let elId = 'custom-text-' + gCurrLine;
-    var elem = document.getElementById(elId);
-    elem.parentNode.removeChild(elem);
+    // let elId = 'custom-text-' + gCurrLine;
+    // var elem = document.getElementById(elId);
+    // elem.parentNode.removeChild(elem);
     updateInputStyle()
     gCurrLine -= 1;
     if (gCurrLine < 0) gCurrLine = 0;
-    let  elemId = 'custom-text-' + gCurrLine;
-    var elToFocus = document.getElementById(elemId);
-    elToFocus.classList.add("focus");
+    // let  elemId = 'custom-text-' + gCurrLine;
+    // var elToFocus = document.getElementById(elemId);
+    // elToFocus.classList.add("focus");
+    document.getElementById("custom-text").value = gMeme.txts[gCurrLine].line;
 }
 
