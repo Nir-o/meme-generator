@@ -5,7 +5,7 @@ var gCurrImg;
 function init() {
     canvas = document.getElementById('myCanvas');
     ctx = canvas.getContext('2d');
-    gCurrImg = document.getElementById('start-image');
+    // gCurrImg = document.getElementById('start-image');
 }
 
 function renderCanvas(img) {

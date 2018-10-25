@@ -2,58 +2,57 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
         crossorigin="anonymous">
     <link rel="stylesheet" href="/css/index-style.css">
 </head>
 
 <body onload="init()">
+    <div class="hidden main-grid-container">
 
-    <input type="file" name="image" onchange="onFileInputChange(event)" />
-
-    <div class="publish-form-container"></div>
-
-    <hr>
-    <br>
-    <canvas id="myCanvas" width="400" height="400" style="outline:1px solid green">Sorry, canvas not supported</canvas>
-
-    <br>
-
-    <div class="input-container">
-        <div class="txt-input-container" id="inputs">
-                <p> <input id="custom-text" type="text" placeholder="Enter Text Here" oninput="createMeme()" /></p>
-            <!-- <p> <input id="custom-text-0" type="text" placeholder="Enter Text Here" oninput="createMeme()" /></p> -->
+        <div class="header">
+            <div class="back-to-gallery">back</div>
+            <div class="pictur-description">Picture Description</div>
+            <input class="brows-btn" type="file" name="image" onchange="onFileInputChange(event)" />
         </div>
-        <div class="text-style-buttons-container">
-            <button class="delete-mem far fa-trash-alt" onclick="deleteText(0)"></button>
-            <button class="uppercase-txt fas fa-font" onclick="toggleUppercase()"></button>
-            <button class="stroke-txt fas fa-bold" onclick="toggleStroke()"></button>
+
+        <div class="text-container">
+            <button id="add-line" class="line-select fab fa-line" onclick="addLine()"></button>
+            <button id="delete-line" class="fas fa-minus-square" onclick="deleteLine()"></button>
+            <input id="custom-text" type="text" placeholder="Enter Text Here" oninput="createMeme()" />
+            <button id="switch-line" class="fas fa-list-ol" onclick="switchLine()"></button>
+        </div>
+
+        <div class="style-container">
+            <button id="style-item-1" class="delete-mem far fa-trash-alt" onclick="deleteText(0)"></button>
+            <button id="style-item-2" class="uppercase-txt fas fa-font" onclick="toggleUppercase()"></button>
+            <button id="style-item-3" class="stroke-txt fas fa-bold" onclick="toggleStroke()"></button>
             <input id="color-wheel" type="color" value="#ffffff" color-txt fas fa-palette">
-            <button class="font-size-up fas fa-plus" onclick="fontResize(1)"></button>
-            <button class="font-size-down fas fa-minus" onclick="fontResize(-1)"></button>
-            <button class="fas fa-arrow-left" onclick="lineAlign(-10)"></button>
-            <button class="align-txt-center fas fa-align-center" onclick="lineAlignCenter()"></button>
-            <button class="fas fa-arrow-right" onclick="lineAlign(10)"></button>
-            <button class="fas fa-arrow-up" onclick="lineHeight(-10)"></button>
-            <button class="fas fa-arrow-down" onclick="lineHeight(10)"></button>
-            <button class="line-select fab fa-line" onclick="addLine()"></button>
-            <button class="fas fa-list-ol" onclick="switchLine()"></button>
-            <button class="fas fa-minus-square" onclick="deleteLine()"></button>
-
-
-
-
+            <button id="style-item-4" class="font-size-up fas fa-plus" onclick="fontResize(1)"></button>
+            <button id="style-item-5" class="font-size-down fas fa-minus" onclick="fontResize(-1)"></button>
+            <button id="style-item-6" class="fas fa-arrow-left" onclick="lineAlign(-10)"></button>
+            <button id="style-item-7" class="align-txt-center fas fa-align-center" onclick="lineAlignCenter()"></button>
+            <button id="style-item-8" class="fas fa-arrow-right" onclick="lineAlign(10)"></button>
+            <button id="style-item-9" class="fas fa-arrow-up" onclick="lineHeight(-10)"></button>
+            <button id="style-item-10" class="fas fa-arrow-down" onclick="lineHeight(10)"></button>
         </div>
-        <!-- <button onclick="createMeme()">Create</button> -->
+
+        <div class="canvas-container">
+            <canvas id="myCanvas" width="400" height="400" style="outline:1px solid green">Sorry, canvas not supported</canvas>
+        </div>
+    </div>
+    <div class="footer">
+        <a id="dwnld-btn" href="#" onclick="downloadImg(this)" download="my-img.jpg">Download as jpeg</a>
+        <a id="about" href="#">About Us</a>
+        <div class="publish-form-container"></div>
+
     </div>
 
-    <p> <a href="#" onclick="downloadImg(this)" download="my-img.jpg">
-            Download as jpeg
-        </a></p>
-
-    <br>
-
-    <img class="img-gallery" src="/meme-imgs/9.jpg" id="1" onclick="selectedMeme(this)" />
+    <div id="gallery" class="img-gallery">
+        <img class="img-gallery" src="/meme-imgs/9.jpg" id="1" onclick="selectedMeme(this)" />
+    </div>
 
     <script src="js/service.js"></script>
     <script src="js/upload-service.js"></script>

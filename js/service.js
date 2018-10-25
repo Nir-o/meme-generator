@@ -23,6 +23,10 @@ function selectedMeme(img) {
     gMeme.selectedImgId = img.id;
     gCurrImg = img;
     renderCanvas(img)
+    // var gallery = document.querySelector("img-gallery");
+    var gallery = document.getElementById('gallery');
+    gallery.classList.add('hidden');
+    document.querySelector('.main-grid-container').classList.remove('hidden');
 }
 
 function deleteText() {
