@@ -223,8 +223,9 @@ input:focus {
 
 .gallery-header {
     flex-basis: 90%;
-    background-color: darkblue;
+    background-color: lightblue;
     text-align: center;
     font-size: 33px;
-    color: blue;
+    color: darkblue;
+    border-radius: 10px;
 }
