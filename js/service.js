@@ -1,6 +1,5 @@
 var gCurrLine = 0;
 var gLineCounter = 0;
-// var gImgs = [{ id: 1, url: '/meme-imgs/9.jpg', keywords: ['happy'] }];
 var gMeme = {
     selectedImgId: 1,
     txts: [
@@ -34,13 +33,7 @@ function toggleGallery() {
 function selectedMeme(img) {
     gMeme.selectedImgId = img.id;
     gCurrImg = img;
-    // renderCanvas(img);
     toggleGallery()
-    // var gallery = document.querySelector("img-gallery");
-    // var gallery = document.getElementById('gallery');
-    // gallery.classList.add('hidden');
-    // document.querySelector('.main-grid-container').classList.remove('hidden');
-
     renderImgFitByRatio(canvas, img)
 }
 
@@ -74,7 +67,6 @@ function lineAlign(direction) {
 }
 
 function lineAlignCenter() {
-    // gMeme.txts[gCurrLine].lineX = canvas.width / 2 - gMeme.txts[gCurrLine].line.length * 6;
     gMeme.txts[gCurrLine].lineX = canvas.width / 2 - ctx.measureText(gMeme.txts[gCurrLine].line).width / 2;
     gMeme.txts[gCurrLine].lineY = 50;
     updateInputStyle()
@@ -102,7 +94,6 @@ function switchLine(line) {
         gCurrLine = line;
     }
     document.getElementById("custom-text").value = gMeme.txts[gCurrLine].line;
-    // lineFocus(gCurrLine);
 }
 
 function deleteLine() {

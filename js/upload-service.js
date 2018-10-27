@@ -10,7 +10,6 @@ function uploadImg(elForm, ev) {
    
     // A function to be called if request succeeds
     function onSuccess(uploadedImgId) {
-        // console.log('uploadedImgId', uploadedImgId);
 
         var urlForShare = SHARE_URL + uploadedImgId;
         //var imgUrl      = UPLOADED_IMG_URL + uploadedImgId;
@@ -21,7 +20,6 @@ function uploadImg(elForm, ev) {
            Share   
         </a>`
     }
-
     doUploadImg(elForm, onSuccess);
 }
 

@@ -13,7 +13,6 @@ function renderCanvas(img) {
     ctx.drawImage(img, 0, 0);
 }
 
-
 function onFileInputChange(ev) {
     handleImageFromInput(ev, renderImgFitByRatio)
 }
@@ -80,13 +79,9 @@ var mouse = {
 
 // Handles user clicks on lines.
 document.getElementById("myCanvas").addEventListener("mousedown", function (event) {
-
-    // function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
     var clientMouseX = event.clientX - rect.left;
     var clientMouseY = event.clientY - rect.top;
-    // console.log(event.clientX - rect.left);
-    // console.log(event.clientY - rect.top);
 
     for (var i = 0; i <= gLineCounter; i++) {
 
@@ -103,8 +98,6 @@ document.getElementById("myCanvas").addEventListener("mousedown", function (even
             console.log('clicked line: ', gCurrLine);
         }
     }
-
-
 });
 
 
@@ -114,8 +107,6 @@ function renderImgFitByRatio(canvas, imageObj) {
     var canvasAspectRatio = canvas.width / canvas.height;
     var renderableHeight, renderableWidth, xStart, yStart;
 
-    // If image's aspect ratio is less than canvas's we fit on height
-    // and place the image centrally along width
     if (imageAspectRatio < canvasAspectRatio) {
         renderableHeight = canvas.height;
         renderableWidth = imageObj.width * (renderableHeight / imageObj.height);
