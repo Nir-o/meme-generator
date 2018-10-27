@@ -13,8 +13,8 @@
 
         <div class="header">
             <div class="fas fa-chevron-left" onclick="toggleGallery()"></div>
-            <h4 class="pictur-description">Meme Generator</h4>
-            <input class="brows-btn " type="file" name="image" onchange="onFileInputChange(event)" />
+            <h2 class="pictur-description">Meme Generator</h2>
+
         </div>
 
         <div class="text-container">
@@ -48,10 +48,13 @@
             <div class="publish-form-container"></div>
 
         </div>
+        <div class="file-load">
+            <input class="brows-btn " type="file" name="image" onchange="onFileInputChange(event)" />
+        </div>
     </div>
 
     <div id="gallery" class="img-gallery">
-        <div class="header">
+        <div class="gallery-header">
             <div class="fas fa-chevron-left" onclick="toggleGallery()"></div>
         </div>
         <div class="gallery-item"><img src="meme-imgs/2.jpg" onclick="selectedMeme(this)" /></div>

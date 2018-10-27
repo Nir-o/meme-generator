@@ -6,11 +6,18 @@
 
 html {
     height: 100%;
+    width: 100%;
 }
 
 body {
     height: 100%;
     color: white;
+    background-image: url(/bgImg/stars-1436950_960_720.jpg) ;
+			background-position: center center;
+			background-repeat: repeat;
+			background-attachment: inherit;
+			background-size:  cover;
+			background-color: #999;
 }
 
 .social-share-btn {
@@ -49,7 +56,7 @@ a {
 }
 
 .img-gallery {
-    background-color: black;
+    /* background-color: black; */
     padding: 15px;
     height: 100%;
     display: flex;
@@ -60,16 +67,26 @@ a {
 .gallery-item {
     width: 150px;
     margin: 5px;
+    transition: 0.3s;
+    border: 2px solid lightblue;
+    border-radius: 10%;
 }
 
 .gallery-item:hover {
     cursor: pointer;
+    opacity: 0.7;
 }
 
 .gallery-item img {
     object-fit: cover;
     width: 100%;
     height: 100%;
+    border-radius: 10%;
+    
+}
+
+.gallery-item img:hover {
+    
 }
 
 #color-wheel, button:hover {
@@ -106,8 +123,7 @@ input:focus {
     height: 10%;
     background-color: red;
     display: flex;
-    /* justify-content: space-between; */
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 }
 
@@ -115,12 +131,18 @@ input:focus {
     flex-basis: 10%;
 }
 
+/* .fa-chevron-left {
+    float: left;
+} */
+
 .pictur-description {
     flex-basis: 70%;
 }
 
 .brows-btn {
     flex-basis: 10%;
+    background-color: black;
+    color: blue;
 }
 
 .text-container {
@@ -199,3 +221,10 @@ input:focus {
      
 }
 
+.gallery-header {
+    flex-basis: 90%;
+    background-color: darkblue;
+    text-align: center;
+    font-size: 33px;
+    color: blue;
+}
