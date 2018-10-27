@@ -9,13 +9,13 @@ function init() {
 }
 
 function renderCanvas(img) {
-//     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    //     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
     ctx.drawImage(img, 0, 0);
 }
 
 
 function onFileInputChange(ev) {
-    handleImageFromInput(ev, renderCanvas)
+    handleImageFromInput(ev, renderImgFitByRatio)
 }
 
 function downloadImg(elLink) {
@@ -25,7 +25,8 @@ function downloadImg(elLink) {
 
 function createMeme() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    renderCanvas(gCurrImg);
+    // renderCanvas(gCurrImg);
+    renderImgFitByRatio(canvas, gCurrImg);
     var text = document.getElementById("custom-text").value;
     gMeme.txts[gCurrLine].line = text;
     // gMeme.txts[gCurrLine].lineX = canvas.width / 2 - text.length * 6;
@@ -36,7 +37,8 @@ function createMeme() {
 
 function updateInputStyle() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    renderCanvas(gCurrImg);
+    // renderCanvas(gCurrImg);
+    renderImgFitByRatio(canvas, gCurrImg);
     for (var i = 0; i <= gLineCounter; i++) {
         var text = gMeme.txts[i].line
         ctx.lineWidth = 5;
@@ -83,8 +85,8 @@ document.getElementById("myCanvas").addEventListener("mousedown", function (even
     var rect = canvas.getBoundingClientRect();
     var clientMouseX = event.clientX - rect.left;
     var clientMouseY = event.clientY - rect.top;
-    console.log(event.clientX - rect.left);
-    console.log(event.clientY - rect.top);
+    // console.log(event.clientX - rect.left);
+    // console.log(event.clientY - rect.top);
 
     for (var i = 0; i <= gLineCounter; i++) {
 
@@ -106,3 +108,51 @@ document.getElementById("myCanvas").addEventListener("mousedown", function (even
 });
 
 
+function renderImgFitByRatio(canvas, imageObj) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    var imageAspectRatio = imageObj.width / imageObj.height;
+    var canvasAspectRatio = canvas.width / canvas.height;
+    var renderableHeight, renderableWidth, xStart, yStart;
+
+    // If image's aspect ratio is less than canvas's we fit on height
+    // and place the image centrally along width
+    if (imageAspectRatio < canvasAspectRatio) {
+        renderableHeight = canvas.height;
+        renderableWidth = imageObj.width * (renderableHeight / imageObj.height);
+        xStart = (canvas.width - renderableWidth) / 2;
+        yStart = 0;
+    }
+
+    // If image's aspect ratio is greater than canvas's we fit on width
+    // and place the image centrally along height
+    else if (imageAspectRatio > canvasAspectRatio) {
+        renderableWidth = canvas.width
+        renderableHeight = imageObj.height * (renderableWidth / imageObj.width);
+        xStart = 0;
+        yStart = (canvas.height - renderableHeight) / 2;
+    }
+
+    // Happy path - keep aspect ratio
+    else {
+        renderableHeight = canvas.height;
+        renderableWidth = canvas.width;
+        xStart = 0;
+        yStart = 0;
+    }
+    ctx.drawImage(imageObj, xStart, yStart, renderableWidth, renderableHeight);
+
+    canvasImagePositions = {
+        start: {
+            x: xStart,
+            y: yStart
+        },
+        end: {
+            x: parseInt(xStart) + parseInt(renderableWidth),
+            y: parseInt(yStart) + parseInt(renderableHeight)
+        },
+        size: {
+            width: renderableWidth,
+            height: renderableHeight
+        }
+    }
+}

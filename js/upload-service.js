@@ -10,7 +10,7 @@ function uploadImg(elForm, ev) {
    
     // A function to be called if request succeeds
     function onSuccess(uploadedImgId) {
-        console.log('uploadedImgId', uploadedImgId);
+        // console.log('uploadedImgId', uploadedImgId);
 
         var urlForShare = SHARE_URL + uploadedImgId;
         //var imgUrl      = UPLOADED_IMG_URL + uploadedImgId;
@@ -47,8 +47,9 @@ function handleImageFromInput(ev, onImageReady) {
 
     reader.onload = function (event) {
         var img = new Image();
-        img.onload = onImageReady.bind(null, img)
+        img.onload = onImageReady.bind(null, canvas, img)
         img.src = event.target.result;
+        gCurrImg = img;
     }
     reader.readAsDataURL(ev.target.files[0]);
 }

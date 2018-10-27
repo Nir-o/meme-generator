@@ -1,6 +1,6 @@
 var gCurrLine = 0;
 var gLineCounter = 0;
-var gImgs = [{ id: 1, url: '/meme-imgs/9.jpg', keywords: ['happy'] }];
+// var gImgs = [{ id: 1, url: '/meme-imgs/9.jpg', keywords: ['happy'] }];
 var gMeme = {
     selectedImgId: 1,
     txts: [
@@ -34,12 +34,14 @@ function toggleGallery() {
 function selectedMeme(img) {
     gMeme.selectedImgId = img.id;
     gCurrImg = img;
-    renderCanvas(img);
+    // renderCanvas(img);
     toggleGallery()
     // var gallery = document.querySelector("img-gallery");
     // var gallery = document.getElementById('gallery');
     // gallery.classList.add('hidden');
     // document.querySelector('.main-grid-container').classList.remove('hidden');
+
+    renderImgFitByRatio(canvas, img)
 }
 
 function deleteText() {
