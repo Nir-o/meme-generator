@@ -9,8 +9,10 @@ function init() {
 }
 
 function renderCanvas(img) {
+//     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
     ctx.drawImage(img, 0, 0);
 }
+
 
 function onFileInputChange(ev) {
     handleImageFromInput(ev, renderCanvas)

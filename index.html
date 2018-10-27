@@ -3,19 +3,18 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
-        crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
+        crossorigin="anonymous">
 </head>
 
 <body onload="init()">
     <div class="hidden main-grid-container">
-
+            
         <div class="header">
-            <div class="back-to-gallery">back</div>
-            <div class="pictur-description">Picture Description</div>
-            <input class="brows-btn" type="file" name="image" onchange="onFileInputChange(event)" />
+            <div class="fas fa-chevron-left" onclick="toggleGallery()" ></div>
+            <h4 class="pictur-description">Meme Generator</h4>
+            <input class="brows-btn " type="file" name="image" onchange="onFileInputChange(event)" />
         </div>
 
         <div class="text-container">
@@ -42,17 +41,74 @@
         <div class="canvas-container">
             <canvas id="myCanvas" width="400" height="400" style="outline:1px solid green">Sorry, canvas not supported</canvas>
         </div>
-    </div>
-    <div class="footer">
-        <a id="dwnld-btn" href="#" onclick="downloadImg(this)" download="my-img.jpg">Download as jpeg</a>
-        <a id="about" href="#">About Us</a>
-        <div class="publish-form-container"></div>
 
+        <div class="footer">
+            <a id="dwnld-btn" href="#" onclick="downloadImg(this)" download="my-img.jpg" class="fas fa-download"></a>
+            <a id="about" href="#">About Us</a>
+            <div class="publish-form-container"></div>
+
+        </div>
     </div>
 
     <div id="gallery" class="img-gallery">
-        <img class="img-gallery" src="meme-imgs/9.jpg" id="1" onclick="selectedMeme(this)" />
+        <img class="gallery-item" src="meme-imgs/9.jpg" id="1" onclick="selectedMeme(this)" />
     </div>
+
+    <!--  
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/2.jpg" class="img-gallery" onclick="selectedMeme(this)"/>
+            </li>
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/003.jpg" />
+            </li>
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/004.jpg" />
+            </li>
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/005.jpg" >
+            </li>
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/5.jpg"/>
+            </li>
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/006.jpg" />
+            </li>
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/8.jpg" />
+            </li>
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/9.jpg"/>
+            </li>
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/12.jpg" />
+            </li>
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/19.jpg" />
+            </li>
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/Ancient-Aliens.jpg" />
+            </li>
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/drevil.jpg" />
+            </li>
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/img2.jpg" />
+            </li>
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/img4.jpg"/>
+            </li>
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/img5.jpg" />
+            </li>
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/img6.jpg"/>
+            </li>
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/img11.jpg"/>
+            </li>
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/img12.jpg"/>
+            </li>
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/leo.jpg" />
+            </li>
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/meme1.jpg" />
+            </li>
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/One-Does-Not-Simply.jpg" />
+            </li>
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/Oprah-You-Get-A.jpg" />
+            </li>
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/patrick.jpg" />
+            </li>
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/putin.jpg" />
+            </li>
+            <li class="hex-grid__item"> <img class="hex-grid__media" src="meme-imgs/X-Everywhere.jpg" />
+            </li>
+        </ul>
+    </div> -->
+
+
 
     <script src="js/service.js"></script>
     <script src="js/upload-service.js"></script>

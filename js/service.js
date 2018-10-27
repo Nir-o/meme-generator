@@ -19,14 +19,27 @@ var gMeme = {
     ]
 }
 
+function toggleGallery() {
+    var gallery = document.getElementById('gallery');
+    var memeGen = document.querySelector('.main-grid-container')  
+    if (gallery.classList.contains('hidden')) {
+        gallery.classList.remove('hidden');
+        memeGen.classList.add('hidden');
+    } else {
+        gallery.classList.add('hidden');
+        memeGen.classList.remove('hidden')
+    }
+}
+
 function selectedMeme(img) {
     gMeme.selectedImgId = img.id;
     gCurrImg = img;
-    renderCanvas(img)
+    renderCanvas(img);
+    toggleGallery()
     // var gallery = document.querySelector("img-gallery");
-    var gallery = document.getElementById('gallery');
-    gallery.classList.add('hidden');
-    document.querySelector('.main-grid-container').classList.remove('hidden');
+    // var gallery = document.getElementById('gallery');
+    // gallery.classList.add('hidden');
+    // document.querySelector('.main-grid-container').classList.remove('hidden');
 }
 
 function deleteText() {
