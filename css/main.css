@@ -12,13 +12,14 @@ html {
 body {
     height: 100%;
     color: white;
-    background-image: url(bgImg/stars.jpg) ;
+    background-image: url(../bgImg/stars.jpg) ;
 			background-position: center center;
 			background-repeat: repeat;
 			background-attachment: inherit;
 			background-size:  cover;
 			background-color: #999;
 }
+
 
 .social-share-btn {
     background: #4267b2;
@@ -191,4 +192,8 @@ input:focus {
     font-size: 33px;
     color: darkblue;
     border-radius: 10px;
+}
+
+.fa-chevron-left:hover {
+    cursor: pointer;
 }
